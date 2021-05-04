@@ -22,8 +22,8 @@ request.onreadystatechange = function() {
                 const nom = document.createElement("h2");
                 vignetteDetail.appendChild(nom);
                 nom.textContent = request[i].name;
+                nameOurs = request[i].name;
                 
-
                 //insertion photo de l'ours
                 const photo = document.createElement("img");
                 photo.setAttribute("src", request[i]["imageUrl"]);
@@ -42,8 +42,7 @@ request.onreadystatechange = function() {
                 vignetteDetail.appendChild(prix);
                 prix.textContent = request[i].price + " €";
                 
-                //choix couleur de l'ours
-                
+                //création menu déroulant pour choix couleur de l'ours
                 const selectionCouleur = document.createElement("select");
                 vignetteDetail.appendChild(selectionCouleur);
                 selectionCouleur.setAttribute ("required", "true");
@@ -60,15 +59,32 @@ request.onreadystatechange = function() {
                 couleurC.textContent = request[i].colors[2];
                 selectionCouleur.appendChild (couleurC);
 
-                // bouton ajouter au panier
+                // création bouton ajouter au panier
                 const soumettre = document.createElement ("input");
                 vignetteDetail.appendChild (soumettre);
                 soumettre.setAttribute ("value", "Ajouter au panier");
                 soumettre.setAttribute ("type", "submit");
-                console.log(soumettre);
-
+                soumettre.setAttribute ("id", "Ajout-panier");
+                
+                break;
             }
         }
+
+        // Sauvegarder produits ajoutés dans local storage
+        document.getElementById('Ajout-panier').onclick = function() {
+            if(typeof localStorage!='undefined' && JSON) {
+                
+
+                localStorage.setItem('couleur', request[i].colors[i]);
+               
+
+                   
+                /*
+                localStorage.setItem('coord',JSON.stringify(coordonnees));
+                alert("Mémorisation effectuée");*/
+            } else alert("localStorage n'est pas supporté");
+        };
+        
             
 
     }
