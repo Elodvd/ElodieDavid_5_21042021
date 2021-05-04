@@ -1,0 +1,80 @@
+h1{
+    font-family:"Architects Daughter", Arial, sans-serif;
+    font-size:30px;
+    margin-left:15%;
+}
+h2, button{
+    font-family:'Roboto', Arial, sans-serif;  
+}
+p, a{
+    text-decoration:none;
+    color:black;
+    font-family:'Roboto', Arial, sans-serif;
+}
+a{
+    color:white;
+}
+
+header{
+    display:flex;
+    jusfify-content:space-between;
+    align-items:center;   
+    box-shadow:5px 5px 5px #9961e0;
+}
+
+nav{
+    display:flex;
+    justify-content:flex-end;  
+    align-items:center;
+    height:50px;
+    margin-top:20px;
+}
+
+.bouton-menu{
+    padding:10px 20px 10px 20px;
+    margin:30px;
+    border-radius:10px ;
+    background-color:#9961e0;
+}
+
+main{
+    height:900px;
+    display:flex;
+    flex-wrap:wrap;
+
+}
+
+.vignette-accueil{
+    width:300px;
+    height:370px;
+    border:3px solid #9961e0;
+    border-radius:10px;
+    box-shadow:5px 5px 10px grey;
+    margin:10px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    
+}
+
+.bouton-click-detail{
+    width:200px;
+    height:30px;
+    border-radius:10px;
+    background:#9961e0;
+}
+
+
+footer{
+    height:100px;
+    display:flex;
+    justify-content:space-around;
+    background-color:#9961e0;
+    align-items:center;
+}
+
+//page produit
+
+.nom{
+   color:red;
+}
