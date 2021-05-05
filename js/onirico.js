@@ -49,12 +49,3 @@ request.onreadystatechange = function() {
 request.open("GET", "http://localhost:3000/api/teddies");
 request.send();
 
-/*
-
-btnClickDetail.addEventListener('click', function() {
-   
-
-    });
-
-
-*/

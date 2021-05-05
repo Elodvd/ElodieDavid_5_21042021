@@ -41,11 +41,13 @@ request.onreadystatechange = function() {
                 const prix = document.createElement("h3");
                 vignetteDetail.appendChild(prix);
                 prix.textContent = request[i].price + " €";
-                
+                prix.setAttribute ("id", "prix-ours");
+
                 //création menu déroulant pour choix couleur de l'ours
                 const selectionCouleur = document.createElement("select");
                 vignetteDetail.appendChild(selectionCouleur);
                 selectionCouleur.setAttribute ("required", "true");
+                selectionCouleur.setAttribute("id", "couleur-selectionnee");
                 
                 const couleurA = document.createElement("option");
                 couleurA.textContent = request[i].colors[0];
@@ -59,12 +61,13 @@ request.onreadystatechange = function() {
                 couleurC.textContent = request[i].colors[2];
                 selectionCouleur.appendChild (couleurC);
 
-                // création bouton ajouter au panier
+                // création bouton ajouter au pan
                 const soumettre = document.createElement ("input");
                 vignetteDetail.appendChild (soumettre);
                 soumettre.setAttribute ("value", "Ajouter au panier");
                 soumettre.setAttribute ("type", "submit");
-                soumettre.setAttribute ("id", "Ajout-panier");
+                soumettre.setAttribute ("id", "Ajout-panier")
+                
                 
                 break;
             }
@@ -73,19 +76,52 @@ request.onreadystatechange = function() {
         // Sauvegarder produits ajoutés dans local storage
         document.getElementById('Ajout-panier').onclick = function() {
             if(typeof localStorage!='undefined' && JSON) {
-                
+                if (localStorage.getItem('panier') == null) {
+                    var ligneProduitAjoute =  {
+                        'nom': request[i].name,
+                        'couleur': document.getElementById("couleur-selectionnee").value,
+                        'prix': request[i].price,
+                        'quantite': 1
+                    }
+                    
+                    var panier = [ligneProduitAjoute];
+                    
+                    var panier_json = JSON.stringify(panier);
+                    localStorage.setItem("panier",panier_json);
+                    alert("Produit ajouté au panier");        
+                }
+               else{
+                    var panier_json = localStorage.getItem("panier");
+                    var panier = JSON.parse(panier_json);
 
-                localStorage.setItem('couleur', request[i].colors[i]);
-               
+                    for (var j in panier){
+                        if ((panier[j].nom==request[i].name) && (panier[j].couleur==document.getElementById("couleur-selectionnee").value)){
+                            panier[j].quantite++;
+                            var produitTrouve=true;
+                        }
+                        
+                    }
 
-                   
-                /*
-                localStorage.setItem('coord',JSON.stringify(coordonnees));
-                alert("Mémorisation effectuée");*/
-            } else alert("localStorage n'est pas supporté");
+                    if (produitTrouve==null){
+                        var ligneProduitAjoute =  {
+                            'nom': request[i].name,
+                            'couleur': document.getElementById("couleur-selectionnee").value,
+                            'prix': request[i].price,
+                            'quantite': 1
+                        }
+
+                        panier.push(ligneProduitAjoute);
+                    } 
+
+                    var panier_json = JSON.stringify(panier);
+                    localStorage.setItem("panier",panier_json);
+                    alert("Produit ajouté au panier");
+               }
+            
+            } else alert("localStorage n'est pas supporté"); 
         };
         
-            
+      
 
     }
 }
