@@ -154,3 +154,12 @@ align-items:center;
   input[type=submit] {
     padding: 10px;
   }
+
+  /*Page commande*/
+
+  #main-commande{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    }

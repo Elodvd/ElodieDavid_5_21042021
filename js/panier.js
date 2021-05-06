@@ -16,9 +16,6 @@ if(typeof localStorage!='undefined' && JSON) {
         const Titretableau = document.createElement("h2");
         Titretableau.innerHTML=" Votre panier : "
         
-
-
-
         //création du tableau en vue de stocker les données du panier 
         const tableau = document.createElement("table");
         tableau.classList.add("bordure");
@@ -98,12 +95,37 @@ if(typeof localStorage!='undefined' && JSON) {
        var pTotalPanier = document.createElement("p");
        conteneurTableau.appendChild(pTotalPanier);
        pTotalPanier.innerHTML= "TOTAL : " + totalPanier + " €";
-
-  
-      
     }
-
 
 } else {
     alert("localStorage n'est pas supporté");
-  }
+}
+
+function validationEmail(email) {
+   	var verif 	= /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/
+   	if (verif.exec(email) == null) {
+		return false;
+	}
+	else {
+	    return true;
+	}	
+
+}
+
+const submitCommande = document.getElementById("valider-commande");
+submitCommande.addEventListener("click", function() {
+    var nom = document.getElementById("nom").value;
+    var prenom = document.getElementById("prenom").value;
+    var email = document.getElementById("email").value;
+    var adresse = document.getElementById("adresse").value;
+    var ville = document.getElementById("ville").value;
+    console.log("DEBUG");
+    console.log(validationEmail(email));
+
+ if (nom!="" && prenom!="" && email!="" && adresse!="" && ville!="" && validationEmail(email)) {
+
+    
+ }
+ 
+
+})
