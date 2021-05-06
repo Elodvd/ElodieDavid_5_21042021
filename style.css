@@ -6,11 +6,13 @@ h1{
 h2, button{
     font-family:'Roboto', Arial, sans-serif;  
 }
+
 p, a{
     text-decoration:none;
     color:black;
     font-family:'Roboto', Arial, sans-serif;
 }
+
 a{
     color:white;
 }
@@ -38,7 +40,6 @@ nav{
 }
 
 main{
-    height:900px;
     display:flex;
     flex-wrap:wrap;
     justify-content:center;
@@ -74,11 +75,7 @@ footer{
     align-items:center;
 }
 
-//page produit
-
-.nom{
-   color:red;
-}
+/*page produit*/
 
 .vignette-detail{
     width:300px;
@@ -91,3 +88,20 @@ footer{
     align-items:center;
     padding:10px;
 }
+
+/*Page panier*/
+
+table{
+    border-collapse:collapse;
+    margin-bottom:50px;
+}
+
+th, td{
+border:1px solid black;
+padding:10px;
+}
+/*
+.bordure{
+    border:1px solid black;  
+}
+*/
