@@ -1,17 +1,34 @@
+    //création conteneur tableau + formulaire 
+    const conteneurPage = document.getElementById("main-panier");        
+
+
 if(typeof localStorage!='undefined' && JSON) {
     if (localStorage.getItem('panier') == null) {
         // affichage d'un message si aucun produit dans le panier
-        alert("Votre panier est vide")
+        alert("Votre panier est vide");
+
+        var formulaire = document.getElementById("formulaire");
+        formulaire.style.visibility="hidden";
     }
     else{
+
+        //création du Titre du tableau
+        const Titretableau = document.createElement("h2");
+        Titretableau.innerHTML=" Votre panier : "
+        
+
+
+
         //création du tableau en vue de stocker les données du panier 
-      
         const tableau = document.createElement("table");
         tableau.classList.add("bordure");
 
         //création conteneur tableau
-        const conteneurTableau = document.getElementById("main");        
+        const conteneurTableau = document.getElementById("conteneur-tableau");  
+        conteneurPage.appendChild(conteneurTableau);
+        conteneurTableau.appendChild(Titretableau);
         conteneurTableau.appendChild(tableau);
+        
 
         //création ligne + cellules en-tête
         const ligneEnTete = document.createElement("tr");
@@ -82,17 +99,9 @@ if(typeof localStorage!='undefined' && JSON) {
        conteneurTableau.appendChild(pTotalPanier);
        pTotalPanier.innerHTML= "TOTAL : " + totalPanier + " €";
 
-        
-
-
-
+  
+      
     }
-
-
-    
-
-
-
 
 
 } else {

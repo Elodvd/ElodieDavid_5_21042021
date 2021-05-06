@@ -100,8 +100,57 @@ th, td{
 border:1px solid black;
 padding:10px;
 }
-/*
-.bordure{
-    border:1px solid black;  
+
+#main-panier{
+display:flex;
+flex-direction:column-reverse;
+align-items:center;
 }
-*/
+
+#formulaire{
+    margin-bottom:20px;
+    margin-top:20px;
+}
+
+  fieldset {
+    margin-bottom: 15px;
+    padding: 10px;
+  }
+   
+  legend {
+    padding: 0px 3px;
+    font-weight: bold;
+  }
+   
+  label {
+    width: 110px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 6px;
+  }
+   
+  em {
+    font-weight: bold;
+    font-style: normal;
+    color: #f00;
+  }
+   
+  input:focus {
+    background: #eaeaea;
+  }
+   
+  input, textarea {
+    width: 249px;
+  }
+   
+  textarea {
+    height: 100px;
+  }
+   
+  select {
+    width: 254px;
+  }
+   
+  input[type=submit] {
+    padding: 10px;
+  }
