@@ -78,6 +78,7 @@ request.onreadystatechange = function() {
             if(typeof localStorage!='undefined' && JSON) {
                 if (localStorage.getItem('panier') == null) {
                     var ligneProduitAjoute =  {
+                        'id': request[i]._id,
                         'nom': request[i].name,
                         'couleur': document.getElementById("couleur-selectionnee").value,
                         'prix': request[i].price,

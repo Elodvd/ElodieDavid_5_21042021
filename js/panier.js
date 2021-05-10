@@ -57,6 +57,7 @@ if(typeof localStorage!='undefined' && JSON) {
         var panier = JSON.parse(panier_json);
 
         var totalPanier = 0;
+        var products = [];
 
         for (var i in panier) {
             var ajoutLigneTableau = document.createElement("tr");
@@ -95,6 +96,9 @@ if(typeof localStorage!='undefined' && JSON) {
        var pTotalPanier = document.createElement("p");
        conteneurTableau.appendChild(pTotalPanier);
        pTotalPanier.innerHTML= "TOTAL : " + totalPanier + " €";
+
+       /* Ajout des ID dans le tableau products */
+       products.push(panier[i].id);
     }
 
 } else {
@@ -119,13 +123,64 @@ submitCommande.addEventListener("click", function() {
     var email = document.getElementById("email").value;
     var adresse = document.getElementById("adresse").value;
     var ville = document.getElementById("ville").value;
-    console.log("DEBUG");
-    console.log(validationEmail(email));
 
- if (nom!="" && prenom!="" && email!="" && adresse!="" && ville!="" && validationEmail(email)) {
+    if (nom!="" && prenom!="" && email!="" && adresse!="" && ville!="") {
 
-    
- }
- 
+        if (validationEmail(email)) {
+            var contact = {
+                firstName: prenom,
+                lastName: nom,
+                address: adresse,
+                city: ville,
+                email: email,
+            };
+            
+            var commande = {
+                contact: contact,
+                products: products
+            };
 
-})
+            event.preventDefault();
+            fetch("http://localhost:3000/api/teddies/order", {
+                method: "POST",
+                headers: { 
+                    'Accept': 'application/json', 
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(commande)
+            })
+            .then(function(res) {
+                if (res.ok) {
+                    return res.json();
+                }
+            })
+            .then(function(value) {
+                console.log(value.orderId);
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
+
+        }
+        else {
+            alert("Mauvais format Email");
+        }
+    }
+});
+
+
+/*fetch("http://localhost:3000/api/teddies")
+  .then(function(res) {
+    if (res.ok) {
+        return res.json();      
+    }
+  })
+  .then(function(value) {
+    console.log(value);
+  })
+  .catch(function(err) {
+    // Une erreur est survenue
+  });
+*/
+
+
