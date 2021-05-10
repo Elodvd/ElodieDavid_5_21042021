@@ -1,4 +1,9 @@
+var searchParams = new URLSearchParams(window.location.search);
 
+var orderId= searchParams.get("orderId");
+var totalPanier=searchParams.get("totalPanier");
+  
+  
   if(typeof localStorage!='undefined' && JSON) {
     if (localStorage.getItem('panier') == null) {
         // affichage d'un message si aucune commande en cours
@@ -13,16 +18,11 @@
     var merci = document.getElementById("merci");
     merci.innerHTML="Nous vous remercions pour vos achats !";
 
-    var recap = document.getElementById("recap");
-    recap.innerHTML="Voici les informations récapitulatives de votre commande :";
-
     var numeroCommande = document.getElementById("numero-commande");
-    numeroCommande.innerHTML="numero à récupérer";
+    numeroCommande.innerHTML="Votre numéro de commande : " + orderId;
 
     var montantTotal = document.getElementById("montant-total");
-    montantTotal.innerHTML="Montant total de vos achats : " + totalPanier;
-
-
+    montantTotal.innerHTML="Montant total de vos achats : " + totalPanier + "€";
 
     }
 

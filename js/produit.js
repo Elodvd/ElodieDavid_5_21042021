@@ -98,6 +98,7 @@ fetch("http://localhost:3000/api/teddies/"+id)
 
                     if (produitTrouve==null){
                         var ligneProduitAjoute =  {
+                            'id': teddy._id,
                             'nom': teddy.name,
                             'couleur': document.getElementById("couleur-selectionnee").value,
                             'prix': teddy.price,
