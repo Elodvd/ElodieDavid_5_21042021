@@ -9,7 +9,6 @@ fetch("http://localhost:3000/api/teddies/"+id)
         }
     })
     .then (function(teddy) {
-     
         //création vignetteDetail 
         const vignetteDetail = document.createElement("div");
         vignetteDetail.classList.add("vignette-detail"); 
@@ -18,23 +17,27 @@ fetch("http://localhost:3000/api/teddies/"+id)
         const conteneurVignettes = document.getElementById("main");
         conteneurVignettes.appendChild(vignetteDetail);
 
+     
+       
         //insertion nom de l'ours
+        
         const nom = document.createElement("h2");
-        vignetteDetail.appendChild(nom);
+        vignetteDetail.appendChild(nom); 
         nom.textContent = teddy.name;
         nameOurs = teddy.name;
         
         //insertion photo de l'ours
         const photo = document.createElement("img");
+        vignetteDetail.appendChild(photo); 
         photo.setAttribute("src", teddy["imageUrl"]);
         photo.setAttribute("width", "280");
         photo.setAttribute("height", "200");
         photo.setAttribute("alt", "Photo de " + teddy.name);
-        vignetteDetail.appendChild(photo);
+        
 
         //insertion description de l'ours
         const description = document.createElement("p");
-        vignetteDetail.appendChild(description);
+        vignetteDetail.appendChild(description); 
         description.textContent = teddy.description;
 
         //insertion prix de l'ours
@@ -49,17 +52,17 @@ fetch("http://localhost:3000/api/teddies/"+id)
         selectionCouleur.setAttribute ("required", "true");
         selectionCouleur.setAttribute("id", "couleur-selectionnee");
         
-        const couleurA = document.createElement("option");
-        couleurA.textContent = teddy.colors[0];
-        selectionCouleur.appendChild (couleurA);
+        
+        // insertion des options de couleur pour les ours dans le menu déroulant
+        function creerOption(valeur1, valeur2) {
+            var valeur1 = document.createElement("option");
+            valeur1.textContent = teddy.colors[valeur2];
+            selectionCouleur.appendChild (valeur1);
+        }
 
-        const couleurB = document.createElement("option");
-        couleurB.textContent = teddy.colors[1];
-        selectionCouleur.appendChild (couleurB);
-
-        const couleurC = document.createElement("option");
-        couleurC.textContent = teddy.colors[2];
-        selectionCouleur.appendChild (couleurC);
+       creerOption("couleurA", 0);
+       creerOption("couleurB", 1);
+       creerOption("couleurC", 2);
 
         // création bouton ajouter au panier
         const soumettre = document.createElement ("input");
