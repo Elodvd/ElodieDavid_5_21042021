@@ -3,20 +3,11 @@ h1 {
   font-size: 30px;
   margin-left: 15%;
 }
-h2,
-h3,
-button {
+h2,h3,button {
   font-family: "Roboto", Arial, sans-serif;
 }
 
-p,
-a,
-th,
-td,
-legend,
-label,
-submit,
-placeholder {
+p,a,th,td,legend,label,submit,placeholder {
   text-decoration: none;
   color: black;
   font-family: "Roboto", Arial, sans-serif;
@@ -72,6 +63,11 @@ main {
   align-items: center;
 }
 
+.photo-ours-accueil{
+  width:280px;
+  height:200px;
+}
+
 .bouton-click-detail {
   width: 200px;
   height: 30px;
@@ -101,6 +97,10 @@ footer {
   padding: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+.photo-ours-detail{
+  width:280px;
+  height:200px;
 }
 #couleur-selectionnee {
   margin-bottom: 10px;
@@ -186,7 +186,7 @@ input[type="submit"] {
 
 /*VERSION MOBILE*/
 
-@media all and (max-width: 450px) {
+@media all and (max-width: 450px){
   h1 {
     font-size: 20px;
     margin-left: 5%;
@@ -208,7 +208,40 @@ input[type="submit"] {
     border-radius: 0px;
     position: relative;
   }
+ 
   #logo-panier {
     visibility: hidden;
   }
+  .bouton-menu {
+    margin: 2%; 
+  }
+
+  .vignette-accueil {
+    width: 270px;
+    margin: 1%;
+  }
+  
+  .photo-ours-accueil{
+    width:265px;
+    height:200px;
+  }
+  .vignette-detail {
+    width: 255px;
+    height: 500px;
+  }
+  .photo-ours-detail{
+    width:265px;
+    height:200px;
+  }
+  #conteneur-tableau {
+    padding: 0px 0px 0px 0px; 
+  }
+    input,
+    textarea {
+      width: 200px;
+    }
+    select {
+      width: 200px;
+    }
 }
+
