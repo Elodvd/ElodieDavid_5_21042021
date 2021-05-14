@@ -42,7 +42,7 @@ fetch("http://localhost:3000/api/teddies/" + id)
   })
   .then(function (teddy) {
     nom.textContent = teddy.name;
-    nameOurs = teddy.name;
+    //nameOurs = teddy.name;
     photo.setAttribute("src", teddy["imageUrl"]);
     photo.setAttribute("alt", "Photo de " + teddy.name);
     description.textContent = teddy.description;

@@ -21,3 +21,5 @@ if (typeof localStorage != "undefined" && JSON) {
     montantTotal.innerHTML = "Montant total de vos achats : " + totalPanier + "€";
   }
 }
+
+localStorage.clear();

@@ -1,48 +1,43 @@
-//création conteneur tableau + formulaire
+//création éléments HTML
 const conteneurPage = document.getElementById("main-panier");
+const Titretableau = document.createElement("h2");
+const tableau = document.createElement("table");
+const conteneurTableau = document.getElementById("conteneur-tableau");
+const ligneEnTete = document.createElement("tr");
+
+const nomEnTete = document.createElement("th");
+const quantiteEnTete = document.createElement("th");
+const pxUnitaireEnTete = document.createElement("th");
+const pxTotalEnTete = document.createElement("th");
+
+conteneurPage.appendChild(conteneurTableau);
+conteneurTableau.appendChild(Titretableau);
+conteneurTableau.appendChild(tableau);
+tableau.appendChild(ligneEnTete);
+
+ligneEnTete.appendChild(nomEnTete);
+ligneEnTete.appendChild(quantiteEnTete);
+ligneEnTete.appendChild(pxUnitaireEnTete);
+ligneEnTete.appendChild(pxTotalEnTete);
+
+tableau.classList.add("bordure");
+
+panierVide = document.getElementById("panier-vide");
+
+var formulaire = document.getElementById("formulaire");
 
 // On récupère les données que l'on a stockées dans le local storage depuis la page produit
 if (typeof localStorage != "undefined" && JSON) {
   if (localStorage.getItem("panier") == null) {
-    // affichage d'un message si aucun produit dans le panier
-    alert("Votre panier est vide");
-
     // si le panier est vide alors on affiche pas le formulaire créé dans le fichier panier.html
-    var formulaire = document.getElementById("formulaire");
     formulaire.style.visibility = "hidden";
+    conteneurTableau.style.visibility = "hidden";
   } else {
-    //création du Titre du tableau
-    const Titretableau = document.createElement("h2");
+    panierVide.style.visibility = "hidden";
     Titretableau.innerHTML = " Votre panier : ";
-
-    //création du tableau en vue de stocker les données du panier
-    const tableau = document.createElement("table");
-    tableau.classList.add("bordure");
-
-    //création conteneur tableau
-    const conteneurTableau = document.getElementById("conteneur-tableau");
-    conteneurPage.appendChild(conteneurTableau);
-    conteneurTableau.appendChild(Titretableau);
-    conteneurTableau.appendChild(tableau);
-
-    //création ligne + cellules en-tête
-    const ligneEnTete = document.createElement("tr");
-    tableau.appendChild(ligneEnTete);
-
-    const nomEnTete = document.createElement("th");
-    ligneEnTete.appendChild(nomEnTete);
     nomEnTete.innerHTML = "Nom";
-
-    const quantiteEnTete = document.createElement("th");
-    ligneEnTete.appendChild(quantiteEnTete);
     quantiteEnTete.innerHTML = "Qté";
-
-    const pxUnitaireEnTete = document.createElement("th");
-    ligneEnTete.appendChild(pxUnitaireEnTete);
     pxUnitaireEnTete.innerHTML = "Prix unitaire";
-
-    const pxTotalEnTete = document.createElement("th");
-    ligneEnTete.appendChild(pxTotalEnTete);
     pxTotalEnTete.innerHTML = "Prix Total";
 
     //création d'un tableau de produits dans le local Storage sous forme de tableau
@@ -98,7 +93,30 @@ function validationEmail(email) {
     return true;
   }
 }
-// vérification champs remplis +  validation de la fonction email au click sur "valider commande"
+
+//vérification du bon format du nom, prénom et ville - accepte seulement lettres, espaces et tirets
+function validationChampsTexte(texte) {
+  const result = /^[a-zA-Z\-\s]*$/.test(texte);
+  console.log(texte + " : " + result);
+  return /^[a-zA-Z\-\s]*$/.test(texte);
+}
+
+// Création class Commande
+class Commande {
+  constructor(prenom, nom, adresse, ville, email, panier) {
+    this.contact = {
+      firstName: prenom,
+      lastName: nom,
+      address: adresse,
+      city: ville,
+      email: email,
+    };
+    this.products = panier;
+  }
+}
+
+
+// vérification champs remplis +  fonction bon format + fonction email au click sur "valider commande"
 const submitCommande = document.getElementById("valider-commande");
 submitCommande.addEventListener("click", function () {
   var nom = document.getElementById("nom").value;
@@ -108,45 +126,53 @@ submitCommande.addEventListener("click", function () {
   var ville = document.getElementById("ville").value;
 
   if (nom != "" && prenom != "" && email != "" && adresse != "" && ville != "") {
-    if (validationEmail(email)) {
-      var contact = {
-        firstName: prenom,
-        lastName: nom,
-        address: adresse,
-        city: ville,
-        email: email,
-      };
+    if (validationChampsTexte(nom) && validationChampsTexte(prenom) && validationChampsTexte(ville)) {
+      if (validationEmail(email)) {
+        /*var contact = {
+          firstName: prenom,
+          lastName: nom,
+          address: adresse,
+          city: ville,
+          email: email,
+        }
 
-      //création d'une variable commande qui contient les champs du formulaire + le contenu du tableau de produits
-      var commande = {
-        contact: contact,
-        products: products,
-      };
-      // envoi des infos à l'API
-      console.log(products);
-      event.preventDefault();
-      fetch("http://localhost:3000/api/teddies/order", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(commande),
-      })
-        .then(function (res) {
-          if (res.ok) {
-            return res.json();
-          }
+        //création d'une variable commande qui contient les champs du formulaire + le contenu du tableau de produits
+        var commande = {
+          contact: contact,
+          products: products,
+        };*/
+        var commande = new Commande(prenom, nom, adresse, ville, email, products);
+        console.log("TEST CLASS COMMANDE :");
+        console.log(commande.contact.firstName);
+        console.log(commande.products);
+        // envoi des infos à l'API
+        event.preventDefault();
+        fetch("http://localhost:3000/api/teddies/order", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(commande),
         })
-        // récupération du numéro de commande
-        .then(function (value) {
-          window.location.href = "commande.html?orderId=" + value.orderId + "&totalPanier=" + totalPanier;
-        })
-        .catch(function (err) {
-          console.log(err);
-        });
+          .then(function (res) {
+            if (res.ok) {
+              return res.json();
+            }
+          })
+          // récupération du numéro de commande
+          .then(function (value) {
+            window.location.href = "commande.html?orderId=" + value.orderId + "&totalPanier=" + totalPanier;
+          })
+          .catch(function (err) {
+            console.log(err);
+          });
+      } else {
+        alert("Mauvais format Email");
+      }
     } else {
-      alert("Mauvais format Email");
-    }
+      alert("Utilisez uniquement des caractères alphabétiques dans les champs nom, prénom et ville");
+    } 
+  
   }
 });
