@@ -1,5 +1,3 @@
-
-
 // vérification du bon format de l'email avec une regex avant envoi
 function validationEmail(email) {
     var verif = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;

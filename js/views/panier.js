@@ -84,21 +84,6 @@ if (typeof localStorage != "undefined" && JSON) {
   alert("localStorage n'est pas supporté");
 }
 
-// Création class Commande
-class Commande {
-  constructor(prenom, nom, adresse, ville, email, panier) {
-    this.contact = {
-      firstName: prenom,
-      lastName: nom,
-      address: adresse,
-      city: ville,
-      email: email,
-    };
-    this.products = panier;
-  }
-}
-
-
 // vérification champs remplis +  fonction bon format + fonction email au click sur "valider commande"
 const submitCommande = document.getElementById("valider-commande");
 submitCommande.addEventListener("click", function () {
@@ -111,22 +96,9 @@ submitCommande.addEventListener("click", function () {
   if (nom != "" && prenom != "" && email != "" && adresse != "" && ville != "") {
     if (validationChampsTexte(nom) && validationChampsTexte(prenom) && validationChampsTexte(ville)) {
       if (validationEmail(email)) {
-        /*var contact = {
-          firstName: prenom,
-          lastName: nom,
-          address: adresse,
-          city: ville,
-          email: email,
-        }
-        //création d'une variable commande qui contient les champs du formulaire + le contenu du tableau de produits
-        var commande = {
-          contact: contact,
-          products: products,
-        };*/
-        var commande = new Commande(prenom, nom, adresse, ville, email, products);
-        console.log("TEST CLASS COMMANDE :");
-        console.log(commande.contact.firstName);
-        console.log(commande.products);
+        var contact = new Contact(prenom, nom, adresse, ville, email);
+        var panier = new Panier (contact, products);
+        
         // envoi des infos à l'API
         event.preventDefault();
         fetch("http://localhost:3000/api/teddies/order", {
@@ -135,7 +107,7 @@ submitCommande.addEventListener("click", function () {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(commande),
+          body: JSON.stringify(panier),
         })
           .then(function (res) {
             if (res.ok) {
@@ -144,7 +116,19 @@ submitCommande.addEventListener("click", function () {
           })
           // récupération du numéro de commande
           .then(function (value) {
-            window.location.href = "commande.html?orderId=" + value.orderId + "&totalPanier=" + totalPanier;
+          
+           // sauvegarder commande dans le local storage
+           if (typeof localStorage !="undefined" && JSON){
+             if (localStorage.getItem("commande") == null){
+
+              var confirmationCommande = new Commande (value.orderId, totalPanier);
+
+              localStorage.setItem("commande", JSON.stringify(confirmationCommande));
+
+              
+             }
+           }
+           window.location.href = "commande.html";
           })
           .catch(function (err) {
             console.log(err);
