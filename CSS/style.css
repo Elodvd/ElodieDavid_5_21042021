@@ -1,0 +1,247 @@
+h1 {
+  font-family: "Architects Daughter", Arial, sans-serif;
+  font-size: 30px;
+  margin-left: 15%;
+}
+h2,h3,button {
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+p,a,th,td,legend,label,submit,placeholder {
+  text-decoration: none;
+  color: black;
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+a {
+  color: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 5px 5px 5px #9961e0;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 50px;
+  margin-top: 20px;
+}
+
+.bouton-menu {
+  padding: 10px 20px 10px 20px;
+  margin: 30px;
+  border-radius: 10px;
+  background-color: #9961e0;
+  display: flex;
+  justify-content: space-between;
+}
+#logo-panier-index {
+  margin-left: 5px;
+  color: white;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.vignette-accueil {
+  width: 300px;
+  height: 370px;
+  border: 3px solid #9961e0;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px grey;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo-ours-accueil{
+  width:280px;
+  height:200px;
+}
+
+.bouton-click-detail {
+  width: 200px;
+  height: 30px;
+  border-radius: 10px;
+  background: #9961e0;
+}
+
+footer {
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  background-color: #9961e0;
+  align-items: center;
+}
+
+/*page produit*/
+
+.vignette-detail {
+  width: 300px;
+  height: 500px;
+  border: 3px solid #9961e0;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px grey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.photo-ours-detail{
+  width:280px;
+  height:200px;
+}
+#couleur-selectionnee {
+  margin-bottom: 10px;
+}
+
+/*Page panier*/
+
+#conteneur-tableau {
+  border: 1px solid grey;
+  padding: 0px 25px 5px 25px;
+  margin-top: 10px;
+  border-radius: 10px;
+  position: relative;
+}
+#logo-panier {
+  position: absolute;
+  top: -15px;
+  left: -13px;
+}
+
+table {
+  border-collapse: collapse;
+  margin-bottom: 50px;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+#main-panier {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+#formulaire {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+legend {
+  font-weight: bold;
+}
+
+label {
+  width: 110px;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 4px;
+  margin-top: 6px;
+}
+
+input:focus {
+  background: #eaeaea;
+}
+
+input,
+textarea {
+  width: 249px;
+}
+
+textarea {
+  height: 100px;
+}
+
+select {
+  width: 254px;
+}
+
+input[type="submit"] {
+  padding: 10px;
+}
+
+/*Page commande*/
+
+#main-commande {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*VERSION MOBILE*/
+
+@media all and (max-width: 450px){
+  h1 {
+    font-size: 20px;
+    margin-left: 5%;
+  }
+  header {
+    display: inline;
+  }
+
+  footer {
+    height: 150px;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  #conteneur-tableau {
+    border: none;
+    padding: none;
+    margin-top: 0px;
+    border-radius: 0px;
+    position: relative;
+  }
+ 
+  #logo-panier {
+    visibility: hidden;
+  }
+  .bouton-menu {
+    margin: 2%; 
+  }
+
+  .vignette-accueil {
+    width: 270px;
+    margin: 1%;
+  }
+  
+  .photo-ours-accueil{
+    width:265px;
+    height:200px;
+  }
+  .vignette-detail {
+    width: 255px;
+    height: 500px;
+  }
+  .photo-ours-detail{
+    width:265px;
+    height:200px;
+  }
+  #conteneur-tableau {
+    padding: 0px 0px 0px 0px; 
+  }
+    input,
+    textarea {
+      width: 200px;
+    }
+    select {
+      width: 200px;
+    }
+}
+

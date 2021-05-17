@@ -48,12 +48,12 @@ fetch("http://localhost:3000/api/teddies/" + id)
     description.textContent = teddy.description;
     prix.textContent = teddy.price + " €";
 
-    // insertion des options de couleur dans le menu déroulant
-    function creerOption(couleur, emplacement) {
-      var couleur = document.createElement("option");
-      couleur.textContent = teddy.colors[emplacement];
-      selectionCouleur.appendChild(couleur);
-    }
+  // insertion des options de couleur dans le menu déroulant
+  function creerOption(couleur, emplacement) {
+  var couleur = document.createElement("option");
+  couleur.textContent = teddy.colors[emplacement];
+  selectionCouleur.appendChild(couleur);
+  }
     creerOption("couleurA", 0);
     creerOption("couleurB", 1);
     creerOption("couleurC", 2);
@@ -62,13 +62,8 @@ fetch("http://localhost:3000/api/teddies/" + id)
     document.getElementById("Ajout-panier").onclick = function () {
       if (typeof localStorage != "undefined" && JSON) {
         if (localStorage.getItem("panier") == null) {
-          var ligneProduitAjoute = {
-            id: teddy._id,
-            nom: teddy.name,
-            couleur: document.getElementById("couleur-selectionnee").value,
-            prix: teddy.price,
-            quantite: 1,
-          };
+          var ligneProduitAjoute = new Produit(teddy._id,teddy.name,document.getElementById("couleur-selectionnee").value,teddy.price,1);
+
           var panier = [ligneProduitAjoute];
 
           var panier_json = JSON.stringify(panier);
@@ -86,14 +81,7 @@ fetch("http://localhost:3000/api/teddies/" + id)
           }
 
           if (produitTrouve == null) {
-            var ligneProduitAjoute = {
-              id: teddy._id,
-              nom: teddy.name,
-              couleur: document.getElementById("couleur-selectionnee").value,
-              prix: teddy.price,
-              quantite: 1,
-            };
-
+            var ligneProduitAjoute = new Produit(teddy._id,teddy.name,document.getElementById("couleur-selectionnee").value,teddy.price,1);
             panier.push(ligneProduitAjoute);
           }
 
