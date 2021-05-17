@@ -17,7 +17,7 @@ class contact {
     this.email=email;
   }
 }
-*/
+
 class Commande {
   constructor(prenom, nom, adresse, ville, email, panier) {
     this.contact = {
@@ -28,4 +28,4 @@ class Commande {
       email: email,
     };
     this.products = panier;
-  }
+  }*/
