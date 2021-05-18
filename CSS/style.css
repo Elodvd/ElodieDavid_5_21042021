@@ -208,7 +208,7 @@ input[type="submit"] {
 
   #conteneur-tableau {
     border: none;
-    padding: none;
+    padding: 0px;
     margin-top: 0px;
     border-radius: 0px;
     position: relative;
