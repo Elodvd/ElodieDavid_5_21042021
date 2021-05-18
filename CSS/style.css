@@ -108,7 +108,10 @@ footer {
 
 /*Page panier*/
 
-
+article{
+  display:flex;
+  justify-content:center;
+}
 
 #conteneur-tableau {
   border: 1px solid grey;

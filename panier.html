@@ -1,89 +1,79 @@
 <!DOCTYPE html>
 <html lang="fr">
-
-<head>
-    <title> Onorico - votre site de référence pour les oursons en peluche de qualité</title>
-    <meta charset="UTF-8">
+  <head>
+    <title>Onorico - votre site de référence pour les oursons en peluche de qualité</title>
+    <meta charset="UTF-8" />
     <link rel="stylesheet" href="CSS/style.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet"> 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/65dcd4bcca.js" crossorigin="anonymous"></script>
-   
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  
+  <body>
+    <header>
+      <div class="logo">
+        <a href="index.html"><img src="./images/logo.webp" alt="logo Orinoco" width="200" /></a>
+      </div>
+      <div class="slogan">
+        <h1>Oursons en peluche de qualité, fabriqués en France</h1>
+      </div>
+    </header>
 
-<header>
+    <article>
+      <h2 id="panier-vide">Votre panier est vide</h2>
+    </article>
 
-    <div class="logo">
-        <a href="index.html"><img src="./images/logo.webp" alt="logo Orinoco" width="200"></a>
-    </div>
-    <div class="slogan">
-        <h1> Oursons en peluche de qualité, fabriqués en France </h1>
-    </div>
-    
+    <main id="main-panier">
+      <div id="conteneur-tableau">
+        <div id="logo-panier">
+          <i class="fas fa-shopping-basket fa-2x"></i>
+        </div>
+      </div>
+      
 
-</header>
+      <div>
+        <form id="formulaire" method="post">
+          <fieldset>
+            <legend>Veuillez renseigner vos coordonnées :</legend>
+            <label for="nom">Nom </label>
+            <input id="nom" placeholder="Legrand" autofocus="" required="" /><br />
 
-<main id="main-panier">
-    <div id="conteneur-tableau">
-            <div id="logo-panier">
-                <i class="fas fa-shopping-basket fa-2x"></i>
-            </div>
-    </div>
-    <h2 id="panier-vide">Votre panier est vide</h2>
- 
+            <label for="prénom">Prénom</label>
+            <input id="prenom" placeholder="Paul" autofocus="" required="" /><br />
 
-    <div><form id = "formulaire" method="post">
-        <fieldset>
-                <legend>Veuillez renseigner vos coordonnées :</legend>
-                  <label for="nom">Nom </label>
-                  <input id="nom" placeholder="Legrand" autofocus="" required=""><br>
-                  
-                  <label for="prénom">Prénom</label>
-                  <input id="prenom" placeholder="Paul" autofocus="" required=""><br>
+            <label for="email">Email </label>
+            <input id="email" type="email" placeholder="prenom.nom@yahoo.fr" required="" /><br />
 
-                  <label for="email">Email </label>
-                  <input id="email" type="email" placeholder="prenom.nom@yahoo.fr" required="" ><br>
+            <label for="adresse">Adresse</label>
+            <textarea name="adresse" id="adresse" rows="5" cols="50" required></textarea><br />
 
-                  <label for="adresse">Adresse</label>
-                  <textarea name="adresse" id="adresse" rows="5" cols="50" required></textarea><br>
+            <label for="ville">Ville : </label>
+            <input type="text" name="ville" id="ville" required />
+          </fieldset>
 
-                  <label for="ville">Ville : </label>
-                  <input type="text" name="ville" id="ville" required />
+          <input type="submit" value="Valider votre commande" id="valider-commande" />
+        </form>
+      </div>
+    </main>
 
-              </fieldset>
-
-
-        <input type="submit" value="Valider votre commande" id="valider-commande" />
-
-     </form>
-    </div>
-     
-</main>
-
-<footer>
-
-    <div>
+    <footer>
+      <div>
         <a href="#"> Mentions légales</a>
-    </div>
-    <div>
+      </div>
+      <div>
         <a href="#"> Foire aux questions</a>
-    </div>
-    <div>
+      </div>
+      <div>
         <a href="#"> Contacts</a>
-    </div>
-    
-</footer>
+      </div>
+    </footer>
 
     <script src="js/entity/contact.js"></script>
     <script src="js/entity/panier.js"></script>
     <script src="js/entity/commande.js"></script>
     <script src="js/utils/fonctions.js"></script>
     <script src="js/views/panier.js"></script>
- 
-
-
-</body>
+  </body>
 </html>

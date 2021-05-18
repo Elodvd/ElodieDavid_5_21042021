@@ -25,7 +25,6 @@ soumettre.setAttribute("value", "Ajouter au panier");
 soumettre.setAttribute("type", "submit");
 soumettre.setAttribute("id", "Ajout-panier");
 
-
 prix.setAttribute("id", "prix-ours");
 
 photo.classList.add("photo-ours-detail");
@@ -42,18 +41,17 @@ fetch("http://localhost:3000/api/teddies/" + id)
   })
   .then(function (teddy) {
     nom.textContent = teddy.name;
-    //nameOurs = teddy.name;
     photo.setAttribute("src", teddy["imageUrl"]);
     photo.setAttribute("alt", "Photo de " + teddy.name);
     description.textContent = teddy.description;
     prix.textContent = teddy.price + " €";
 
-  // insertion des options de couleur dans le menu déroulant
-  function creerOption(couleur, emplacement) {
-  var couleur = document.createElement("option");
-  couleur.textContent = teddy.colors[emplacement];
-  selectionCouleur.appendChild(couleur);
-  }
+    // insertion des options de couleur dans le menu déroulant
+    function creerOption(couleur, emplacement) {
+      var couleur = document.createElement("option");
+      couleur.textContent = teddy.colors[emplacement];
+      selectionCouleur.appendChild(couleur);
+    }
     creerOption("couleurA", 0);
     creerOption("couleurB", 1);
     creerOption("couleurC", 2);
@@ -61,8 +59,9 @@ fetch("http://localhost:3000/api/teddies/" + id)
     // Sauvegarder produits ajoutés dans local storage
     document.getElementById("Ajout-panier").onclick = function () {
       if (typeof localStorage != "undefined" && JSON) {
+        // S'il n'y a rien dans le panier, on créé une première ligne pour le produit
         if (localStorage.getItem("panier") == null) {
-          var ligneProduitAjoute = new Produit(teddy._id,teddy.name,document.getElementById("couleur-selectionnee").value,teddy.price,1);
+          var ligneProduitAjoute = new Produit(teddy._id, teddy.name, document.getElementById("couleur-selectionnee").value, teddy.price, 1);
 
           var panier = [ligneProduitAjoute];
 
@@ -72,16 +71,16 @@ fetch("http://localhost:3000/api/teddies/" + id)
         } else {
           var panier_json = localStorage.getItem("panier");
           var panier = JSON.parse(panier_json);
-
+          //on vérifie si le même produit est déjà présent dans le panier, si oui on augmente la quantité
           for (var j in panier) {
             if (panier[j].nom == teddy.name && panier[j].couleur == document.getElementById("couleur-selectionnee").value) {
               panier[j].quantite++;
               var produitTrouve = true;
             }
           }
-
+          // si le produit n'est pas encore présent dans le panier, on ajoute une nouvelle ligne au tableau
           if (produitTrouve == null) {
-            var ligneProduitAjoute = new Produit(teddy._id,teddy.name,document.getElementById("couleur-selectionnee").value,teddy.price,1);
+            var ligneProduitAjoute = new Produit(teddy._id, teddy.name, document.getElementById("couleur-selectionnee").value, teddy.price, 1);
             panier.push(ligneProduitAjoute);
           }
 

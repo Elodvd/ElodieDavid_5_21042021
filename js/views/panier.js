@@ -1,4 +1,7 @@
-//création éléments HTML
+panierVide = document.getElementById("panier-vide");
+var formulaire = document.getElementById("formulaire");
+
+//création éléments HTML pour la tableau contenant les éléments du panier
 const conteneurPage = document.getElementById("main-panier");
 const Titretableau = document.createElement("h2");
 const tableau = document.createElement("table");
@@ -22,16 +25,13 @@ ligneEnTete.appendChild(pxTotalEnTete);
 
 tableau.classList.add("bordure");
 
-panierVide = document.getElementById("panier-vide");
-
-var formulaire = document.getElementById("formulaire");
-
 // On récupère les données que l'on a stockées dans le local storage depuis la page produit
 if (typeof localStorage != "undefined" && JSON) {
   if (localStorage.getItem("panier") == null) {
-    // si le panier est vide alors on affiche pas le formulaire créé dans le fichier panier.html
+    // si le panier est vide alors on affiche ni le tableau ni le formulaire
     formulaire.style.visibility = "hidden";
     conteneurTableau.style.visibility = "hidden";
+    //sinon, le message "votre panier est vide" n'apparait pas et on fait apparaitre le tableau + le formulaire
   } else {
     panierVide.style.visibility = "hidden";
     Titretableau.innerHTML = " Votre panier : ";
@@ -84,7 +84,7 @@ if (typeof localStorage != "undefined" && JSON) {
   alert("localStorage n'est pas supporté");
 }
 
-// vérification champs remplis +  fonction bon format + fonction email au click sur "valider commande"
+// au click, vérification champs remplis +  formats corrects (avec les fonctions)
 const submitCommande = document.getElementById("valider-commande");
 submitCommande.addEventListener("click", function () {
   var nom = document.getElementById("nom").value;
@@ -97,8 +97,8 @@ submitCommande.addEventListener("click", function () {
     if (validationChampsTexte(nom) && validationChampsTexte(prenom) && validationChampsTexte(ville)) {
       if (validationEmail(email)) {
         var contact = new Contact(prenom, nom, adresse, ville, email);
-        var panier = new Panier (contact, products);
-        
+        var panier = new Panier(contact, products);
+
         // envoi des infos à l'API
         event.preventDefault();
         fetch("http://localhost:3000/api/teddies/order", {
@@ -116,19 +116,15 @@ submitCommande.addEventListener("click", function () {
           })
           // récupération du numéro de commande
           .then(function (value) {
-          
-           // sauvegarder commande dans le local storage
-           if (typeof localStorage !="undefined" && JSON){
-             if (localStorage.getItem("commande") == null){
+            // sauvegarde de la commande dans le local storage
+            if (typeof localStorage != "undefined" && JSON) {
+              if (localStorage.getItem("commande") == null) {
+                var confirmationCommande = new Commande(value.orderId, totalPanier);
 
-              var confirmationCommande = new Commande (value.orderId, totalPanier);
-
-              localStorage.setItem("commande", JSON.stringify(confirmationCommande));
-
-              
-             }
-           }
-           window.location.href = "commande.html";
+                localStorage.setItem("commande", JSON.stringify(confirmationCommande));
+              }
+            }
+            window.location.href = "commande.html";
           })
           .catch(function (err) {
             console.log(err);
@@ -138,7 +134,6 @@ submitCommande.addEventListener("click", function () {
       }
     } else {
       alert("Utilisez uniquement des caractères alphabétiques dans les champs nom, prénom et ville");
-    } 
-  
+    }
   }
 });

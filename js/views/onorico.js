@@ -1,5 +1,4 @@
-// affichage liste ours
-
+// récupération de la liste des ours auprès de l'API
 fetch("http://localhost:3000/api/teddies")
   .then(function (res) {
     if (res.ok) {
@@ -8,7 +7,7 @@ fetch("http://localhost:3000/api/teddies")
   })
   .then(function (request) {
     console.log(request);
-
+    // si réponse positive de l'API - création des éléments HTML permettant l'affichage de la liste
     for (var i in request) {
       var id = request[i]._id;
       const vignette = document.createElement("div");
@@ -28,7 +27,7 @@ fetch("http://localhost:3000/api/teddies")
       photo.classList.add("photo-ours-accueil");
       bouton.classList.add("bouton-click-detail");
       vignette.classList.add("vignette-accueil");
-      
+
       conteneurVignettes.appendChild(vignette);
       vignetteAccueil[i].appendChild(nom);
       vignetteAccueil[i].appendChild(photo);
@@ -41,6 +40,7 @@ fetch("http://localhost:3000/api/teddies")
       lienBouton.textContent = "Voir le produit";
     }
   })
+  //sinon, affichage d'un message d'erreur
   .catch(function (err) {
     alert("Une erreur est survenue lors de la communication avec le serveur");
   });
