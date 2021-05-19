@@ -6,11 +6,18 @@ h1 {
 h2,h3,button {
   font-family: "Roboto", Arial, sans-serif;
 }
+h2{
+  font-size:20px;
+}
+h3, button{
+  font-size:17px;
+}
 
 p,a,th,td,legend,label,submit,placeholder {
   text-decoration: none;
   color: black;
   font-family: "Roboto", Arial, sans-serif;
+  font-size: 17px;
 }
 
 a {
@@ -232,7 +239,7 @@ input[type="submit"] {
   }
   .vignette-detail {
     width: 255px;
-    height: 500px;
+    height: 530px;
   }
   .photo-ours-detail{
     width:265px;
