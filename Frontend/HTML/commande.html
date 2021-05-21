@@ -3,18 +3,18 @@
   <head>
     <title>Onorico - votre site de référence pour les oursons en peluche de qualité</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="CSS/style.css" />
+    <link rel="stylesheet" href="../CSS/style.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/65dcd4bcca.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
- 
+
   <body>
     <header>
       <div class="logo">
-        <a href="index.html"><img src="./images/logo.webp" alt="logo Orinoco" width="200" /></a>
+        <a href="index.html"><img src="../images/logo.webp" alt="logo Orinoco" width="200" /></a>
       </div>
       <div class="slogan">
         <h1>Oursons en peluche de qualité, fabriqués en France</h1>
@@ -30,7 +30,15 @@
       </div>
     </nav>
 
-    <main id="main">
+    <main id="main-commande">
+      <div id="txt-no-commande"></div>
+
+      <div id="txt-confirmation"></div>
+      <h2 id="merci"></h2>
+      <br />
+      <p id="numero-commande"></p>
+      <br />
+      <p id="montant-total"></p>
     </main>
 
     <footer>
@@ -45,8 +53,7 @@
       </div>
     </footer>
 
-    <script src="js/entity/produit.js"></script>
-    <script src="js/utils/fonctions.js"></script>
-    <script src="js/views/produit.js"></script>
+    <script src="../JS/views/commande.js"></script>
+    <script src="../JS/entity/commande.js"></script>
   </body>
 </html>

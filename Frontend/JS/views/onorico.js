@@ -8,8 +8,8 @@ fetch("http://localhost:3000/api/teddies")
   .then(function (request) {
     console.log(request);
     // si réponse positive de l'API - création des éléments HTML permettant l'affichage de la liste
-    for (var i in request) {
-      var id = request[i]._id;
+    for (let i in request) {
+      let id = request[i]._id;
       const vignette = document.createElement("div");
       const nom = document.createElement("h2");
       const photo = document.createElement("img");
@@ -36,7 +36,7 @@ fetch("http://localhost:3000/api/teddies")
       btnClickDetail[i].appendChild(lienBouton);
 
       nom.textContent = request[i].name;
-      prix.textContent = request[i].price + " €";
+      prix.textContent = request[i].price /100 + " €";
       lienBouton.textContent = "Voir le produit";
     }
   })

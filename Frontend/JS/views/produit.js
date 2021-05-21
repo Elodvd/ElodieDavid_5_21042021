@@ -44,7 +44,7 @@ fetch("http://localhost:3000/api/teddies/" + id)
     photo.setAttribute("src", teddy["imageUrl"]);
     photo.setAttribute("alt", "Photo de " + teddy.name);
     description.textContent = teddy.description;
-    prix.textContent = teddy.price + " €";
+    prix.textContent = teddy.price/100 + " €";
 
     // insertion des options de couleur dans le menu déroulant
     function creerOption(couleur, emplacement) {
@@ -69,8 +69,8 @@ fetch("http://localhost:3000/api/teddies/" + id)
           localStorage.setItem("panier", panier_json);
           alert("Produit ajouté au panier");
         } else {
-          var panier_json = localStorage.getItem("panier");
-          var panier = JSON.parse(panier_json);
+          panier_json = localStorage.getItem("panier");
+          panier = JSON.parse(panier_json);
           //on vérifie si le même produit est déjà présent dans le panier, si oui on augmente la quantité
           for (var j in panier) {
             if (panier[j].nom == teddy.name && panier[j].couleur == document.getElementById("couleur-selectionnee").value) {

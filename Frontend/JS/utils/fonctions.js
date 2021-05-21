@@ -1,6 +1,6 @@
 // vérification du bon format de l'email avant envoi - contient une @ et termine par un .fr/com...
 function validationEmail(email) {
-    var verif = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
+    let verif = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
     if (verif.exec(email) == null) {
       return false;
     } else {

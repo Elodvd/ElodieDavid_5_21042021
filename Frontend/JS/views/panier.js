@@ -1,5 +1,5 @@
 panierVide = document.getElementById("panier-vide");
-var formulaire = document.getElementById("formulaire");
+let formulaire = document.getElementById("formulaire");
 
 //création éléments HTML pour la tableau contenant les éléments du panier
 const conteneurPage = document.getElementById("main-panier");
@@ -63,12 +63,12 @@ if (typeof localStorage != "undefined" && JSON) {
       /* Affichage du prix du produit */
       var pxOurs = document.createElement("td");
       ajoutLigneTableau.appendChild(pxOurs);
-      pxOurs.innerHTML = panier[i].prix + " €";
+      pxOurs.innerHTML = panier[i].prix/100 + " €";
 
       /* Affichage du prix total de la ligne */
       var tdTotalOurs = document.createElement("td");
       ajoutLigneTableau.appendChild(tdTotalOurs);
-      var pxTotalOurs = panier[i].prix * panier[i].quantite;
+      var pxTotalOurs = panier[i].prix/100 * panier[i].quantite;
       tdTotalOurs.innerHTML = pxTotalOurs + " €";
       totalPanier += pxTotalOurs;
     }
